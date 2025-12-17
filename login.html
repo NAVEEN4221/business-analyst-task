@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+</head>
+<body>
+
+<h2>Login / Sign Up</h2>
+
+<input type="email" id="email" placeholder="Enter Email"><br><br>
+<input type="password" id="password" placeholder="Enter Password"><br><br>
+
+<button onclick="signup()">Sign Up</button>
+<button onclick="login()">Login</button>
+
+<!-- Firebase Libraries -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+<script>
+  // 🔴 PASTE YOUR FIREBASE CONFIG BELOW (REPLACE MINE)
+  const firebaseConfig = {
+  apiKey: "AIzaSyAGjvwagZ3NG28w4bsnV8i_YcqT9QQ7U4Y",
+  authDomain: "ba-assignment-948dd.firebaseapp.com",
+  projectId: "ba-assignment-948dd",
+  storageBucket: "ba-assignment-948dd.firebasestorage.app",
+  messagingSenderId: "777974149166",
+  appId: "1:777974149166:web:6511c7588e60b9fe6a2fbf"
+};
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  function signup() {
+    auth.createUserWithEmailAndPassword(
+      email.value,
+      password.value
+    ).then(() => {
+      alert("Signup successful");
+    }).catch(error => {
+      alert(error.message);
+    });
+  }
+
+  function login() {
+    auth.signInWithEmailAndPassword(
+      email.value,
+      password.value
+    ).then(() => {
+      window.location.href = "home.html";
+    }).catch(error => {
+      alert(error.message);
+    });
+  }
+</script>
+
+</body>
+</html>
